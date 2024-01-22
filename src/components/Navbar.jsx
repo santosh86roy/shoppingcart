@@ -27,7 +27,8 @@ const Navbar = ({ setData, cart }) => {
       <header className="sticky-top">
         <div className="nav-bar">
           <Link to={"/"} className="brand">
-            <span>🛒 EKart</span>
+            <div className="cart_icon">🛒</div>
+            <span> EKart</span>
           </Link>
           <form onSubmit={handleSubmit} className="search-bar">
             <input
@@ -51,42 +52,46 @@ const Navbar = ({ setData, cart }) => {
         <div className="sidebar">
           {location.pathname == "/" && (
             <div className="nav-bar-wrapper">
-              <div className="items">Filter by {"->"}</div>
-              <div onClick={() => setData(items)} className="items">
-                No Filter
+              <div className="navbar-leftside">
+                <div className="items">Filter by {"->"}</div>
+                <div onClick={() => setData(items)} className="items">
+                  No Filter
+                </div>
+                <div
+                  onClick={() => filterByCategory("mobiles")}
+                  className="items"
+                >
+                  Mobiles
+                </div>
+                <div
+                  onClick={() => filterByCategory("laptops")}
+                  className="items"
+                >
+                  Laptops
+                </div>
+                <div
+                  onClick={() => filterByCategory("tablets")}
+                  className="items"
+                >
+                  Tablets
+                </div>
               </div>
-              <div
-                onClick={() => filterByCategory("mobiles")}
-                className="items"
-              >
-                Mobiles
-              </div>
-              <div
-                onClick={() => filterByCategory("laptops")}
-                className="items"
-              >
-                Laptops
-              </div>
-              <div
-                onClick={() => filterByCategory("tablets")}
-                className="items"
-              >
-                Tablets
-              </div>
-              <div onClick={() => filterByPrice(29999)} className="items">
-                {/* {">="}0 to 29999 */}0 to 30k
-              </div>
-              <div onClick={() => filterByPrice(49999)} className="items">
-                {/* {">="}30000 to 49999 */}
-                30k to 50k
-              </div>
-              <div onClick={() => filterByPrice(69999)} className="items">
-                {/* {">="}50000 to 69999 */}
-                50k to 70k
-              </div>
-              <div onClick={() => filterByPrice(89999)} className="items">
-                {/* {">="}70000 to 89999 */}
-                70k to 90k
+              <div className="mobile-view">
+                <div onClick={() => filterByPrice(29999)} className="items">
+                  {/* {">="}0 to 29999 */}0 to 30k
+                </div>
+                <div onClick={() => filterByPrice(49999)} className="items">
+                  {/* {">="}30000 to 49999 */}
+                  30k to 50k
+                </div>
+                <div onClick={() => filterByPrice(69999)} className="items">
+                  {/* {">="}50000 to 69999 */}
+                  50k to 70k
+                </div>
+                <div onClick={() => filterByPrice(89999)} className="items">
+                  {/* {">="}70000 to 89999 */}
+                  70k to 90k
+                </div>
               </div>
             </div>
           )}

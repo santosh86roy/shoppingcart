@@ -8,17 +8,22 @@ const Cart = ({ cart, setCart }) => {
   };
   return (
     <>
-      <div className="container my-5" style={{ width: "54%" }}>
+      <div className="container my-5 cart-container" style={{ width: "54%" }}>
         {cart.length === 0 ? (
           <>
-            <div className="text-center my-2">
+            <div className="text-center my-2 images-empty">
               <div className="images-empty-cart">
                 <img src={emptyCart} alt="order_confirmed" />
               </div>
-              <h1>Your Cart is Empty</h1>
-              <Link to={"/"} className="btn btn-warning">
-                Continue Shopping....
-              </Link>
+              <div className="empty-cart-content">
+                <h1>Your Cart is Empty</h1>
+                <Link
+                  to={"/"}
+                  className="btn btn-warning mobile_view_shoppingbtn"
+                >
+                  Continue Shopping....
+                </Link>
+              </div>
             </div>
           </>
         ) : (
@@ -26,19 +31,22 @@ const Cart = ({ cart, setCart }) => {
             return (
               <>
                 <div
-                  className="card mb-3 my-5"
-                  style={{ width: "700px" }}
+                  className="card mb-3 my-5 shopping_carts"
+                  style={{ width: "100%", maxWidth: "700px" }}
                   key={product.id}
                 >
-                  <div className="row g-0 " style={{ alignItems: "center" }}>
-                    <div className="col-md-4">
+                  <div
+                    className="row g-0 cart-display "
+                    style={{ alignItems: "center" }}
+                  >
+                    <div className="col-md-4 col-12">
                       <img
                         src={product.imgSrc}
                         className="img-fluid rounded-start"
                         alt="..."
                       />
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-8 col-12">
                       <div className="card-body text-center">
                         <h5 className="card-title">{product.title}</h5>
                         <p className="card-text">{product.description}</p>
@@ -62,7 +70,7 @@ const Cart = ({ cart, setCart }) => {
       </div>
       {cart.length !== 0 && (
         <div
-          className="container text-center my-5"
+          className="container text-center my-5 cart-actions"
           style={{
             display: "flex",
             alignItems: "center",
