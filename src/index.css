@@ -1,3 +1,25 @@
+.custom-modal {
+    position: fixed;
+    top: 30px;
+    right: 0;
+}
+
+.modal-dialog.custom-modal {
+    margin: 1.75rem;
+    /* Adjust the margin as needed */
+}
+
+.modal-content {
+    border-radius: 5px;
+    /* Optional: Remove border-radius for a more squared appearance */
+}
+
+.scrollable {
+    max-height: 400px;
+    /* Adjust the max-height as needed */
+    overflow-y: auto;
+}
+
 .nav-bar {
     display: flex;
     align-items: center;
@@ -115,6 +137,7 @@ input::placeholder {
     width: 40%;
     /* Show the mobile-view div for screens up to 767px width */
 }
+
 
 @media only screen and (max-width: 767px) {
     .mobile-view {

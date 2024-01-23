@@ -11,7 +11,7 @@ export const items = [
   {
     id: 5,
     category: "laptops",
-    title: "Xiaomi [Smartchoice] Notebookpro",
+    title: "Xiaomi Notebookpro",
     imgSrc: "https://m.media-amazon.com/images/I/71TPda7cwUL._SL1500_.jpg",
     amazonLink: "https://amzn.to/3EzeQaC",
     description: "Xiaomi [Smartchoice] Notebookpro ",

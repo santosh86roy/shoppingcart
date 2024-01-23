@@ -14,6 +14,7 @@ const Product = ({ items, cart, setCart }) => {
       title,
       description,
       imgSrc,
+      quantity,
     };
     setCart([...cart, obj]);
     console.log("Cart element = ", cart);
