@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { FaCaretLeft, FaCaretRight } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-// <Checkout/>
+
 const Checkout = ({ cart, setCart }) => {
-  console.log(cart);
   const [quantity, setQuantity] = useState({});
 
   const calculateTotal = () => {
@@ -34,11 +33,9 @@ const Checkout = ({ cart, setCart }) => {
   };
 
   const handleDelete = (productId) => {
-    alert(productId);
     setCart((prevCart) =>
-      prevCart.filter((product) => product.id != productId)
+      prevCart.filter((product) => product.id !== productId)
     );
-    console.log(cart);
     setQuantity((prevQuantity) => {
       const { [productId]: deletedProduct, ...rest } = prevQuantity;
       return rest;
@@ -83,8 +80,9 @@ const Checkout = ({ cart, setCart }) => {
                 </span>
               </td>
               <td>
-                {(product.price ? product.price : 0) *
-                  (quantity[product.id] ? quantity[product.id] : 0)}
+                {product.price
+                  ? product.price * (quantity[product.id] || 0)
+                  : 0}
               </td>
               <td>
                 <span onClick={() => handleDelete(product.id)}>

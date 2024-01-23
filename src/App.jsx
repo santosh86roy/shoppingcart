@@ -12,6 +12,7 @@ import Buy from "./components/Buy.jsx";
 const App = () => {
   const [data, setData] = useState([...items]);
   const [cart, setCart] = useState([]);
+  const [quantities, setQuantities] = useState({});
   return (
     <>
       <Router>
@@ -31,10 +32,20 @@ const App = () => {
           />
           <Route
             path="/cart"
-            element={<Cart cart={cart} setCart={setCart} />}
+            element={
+              <Cart cart={cart} setCart={setCart} quantities={quantities} />
+            }
           />
           <Route path="/buy" element={<Buy />} />
-          <Route path="/checkout" element={<Checkout cart={cart} />} />{" "}
+          <Route
+            path="/checkout"
+            element={
+              <Checkout cart={cart} setCart={setCart} quantities={quantities} />
+            }
+          />
+          {/* <Route path="/checkout" element={<Checkout cart={cart} />} />{" "} */}
+          {/* <Route path="/" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} /> */}
           {/* Pass cart prop to Checkout */}
         </Routes>
       </Router>

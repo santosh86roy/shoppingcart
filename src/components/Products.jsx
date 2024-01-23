@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Product = ({ items, cart, setCart }) => {
+  const [quantities, setQuantities] = useState({});
   const addToCart = (id, price, title, description, imgSrc) => {
+    const quantity = quantities[id] || 0;
     const obj = {
       id,
-      price,
+      price: price * quantity,
       title,
       description,
       imgSrc,
@@ -25,6 +27,10 @@ const Product = ({ items, cart, setCart }) => {
       progress: undefined,
       theme: "dark",
     });
+  };
+  const handleQuantityChange = (id, newQuantity) => {
+    const updatedQuantity = Math.max(0, newQuantity);
+    setQuantities({ ...quantities, [id]: updatedQuantity });
   };
 
   return (
@@ -44,6 +50,7 @@ const Product = ({ items, cart, setCart }) => {
       <div className="container my-5">
         <div className="row">
           {items.map((product) => {
+            const quantity = quantities[product.id] || 0;
             return (
               <div
                 key={product.id}
@@ -67,9 +74,39 @@ const Product = ({ items, cart, setCart }) => {
                   <div className="card-body">
                     <h5 className="card-title">{product.title}</h5>
                     <p className="card-text">{product.description}</p>
-                    <button className="btn btn-primary mx-3">
-                      {product.price} ₹
-                    </button>
+                    <div
+                      className="qnty-price"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <div className="btn-group" role="group">
+                        <button
+                          className="btn btn-secondary"
+                          onClick={() =>
+                            handleQuantityChange(product.id, quantity - 1)
+                          }
+                        >
+                          -
+                        </button>
+                        <button className="btn btn-secondary mx-2" disabled>
+                          {quantity}
+                        </button>
+                        <button
+                          className="btn btn-secondary"
+                          onClick={() =>
+                            handleQuantityChange(product.id, quantity + 1)
+                          }
+                        >
+                          +
+                        </button>
+                      </div>
+                      <button className="btn btn-primary mx-3 ">
+                        {product.price * quantity} ₹
+                      </button>
+                    </div>
                     <button
                       onClick={() =>
                         addToCart(
@@ -80,7 +117,7 @@ const Product = ({ items, cart, setCart }) => {
                           product.imgSrc
                         )
                       }
-                      className="btn btn-warning"
+                      className="btn btn-warning my-2"
                     >
                       Add To Cart
                     </button>

@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import emptyCart from "../assets/Img/empty-cart.svg";
-const Cart = ({ cart, setCart }) => {
+const Cart = ({ cart, setCart, quantities }) => {
   const navigate = useNavigate();
   const handleBuyNow = () => {
-    navigate("/buy");
+    navigate("/buy", { state: { cart, quantities } });
   };
   return (
     <>
@@ -77,8 +77,11 @@ const Cart = ({ cart, setCart }) => {
             justifyContent: "center",
           }}
         >
-          <Link to="/checkout" className="btn btn-warning mx-5">
-            check Out
+          <Link
+            to={{ pathname: "/checkout", state: { cart, quantities } }}
+            className="btn btn-warning mx-5"
+          >
+            Check Out
           </Link>
           <button onClick={() => setCart([])} className="btn btn-danger">
             Clear Cart
